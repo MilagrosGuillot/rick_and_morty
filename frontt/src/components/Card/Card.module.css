@@ -1,0 +1,9 @@
+.divCard{
+    
+width: fit-content;
+background-color: black;
+border-radius: 20px;
+display: inline-block;
+border: 10px solid gray;
+
+}

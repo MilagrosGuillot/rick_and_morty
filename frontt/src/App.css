@@ -1,0 +1,8 @@
+.App {
+   text-align: center;
+}
+body{
+   background-image:url("codigo.gif");
+   background-size: cover ;
+   width: 100%;
+}
