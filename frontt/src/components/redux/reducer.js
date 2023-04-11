@@ -1,8 +1,9 @@
-import { ADD_FAVORITES, DELETE_CHARACTER, FILTER, ORDER } from "./types"
+import { GET_FAVORITES, ADD_FAVORITES, REMOVE_FAVORITE, FILTER, ORDER, GET_CHARACTER_DETAIL,CLEAN_DETAIL } from "./types"
 
 const initialState = {
     myFavorites: [],
     allCharacters: [],
+    characterDetail: {},
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -10,10 +11,15 @@ const rootReducer = (state = initialState, action) => {
         case ADD_FAVORITES:
             return {
                 ...state,
-                myFavorites: [...state.allCharacters, action.payload],
-                allCharacters: [...state.allCharacters, action.payload]
+                myFavorites: [...state.myFavorites, action.payload],
             }
-        case DELETE_CHARACTER:
+        case GET_CHARACTER_DETAIL:
+            return {
+                ...state,
+                characterDetail: action.payload,
+            };
+
+        case REMOVE_FAVORITE:
             return {
                 ...state,
                 myFavorites: state.myFavorites.filter(
@@ -32,12 +38,20 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 myFavorites:
                     action.payload === "Ascendente"
-                    ? state.allCharacters.sort((a,b) => a.id - b.id)
-                    : state.allCharacters.sort((a,b) => b.id - a.id)
+                        ? state.allCharacters.sort((a, b) => a.id - b.id)
+                        : state.allCharacters.sort((a, b) => b.id - a.id)
             }
+            case GET_FAVORITES:
+                return { ...state, myFavorites: action.payload };
+
+        case CLEAN_DETAIL:
+            return {
+                ...state,
+                characterDetail: {},
+            };
 
         default:
             return { ...state }
-            }
     }
-    export default rootReducer;
+}
+export default rootReducer;

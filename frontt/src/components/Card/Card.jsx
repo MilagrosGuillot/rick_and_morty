@@ -2,7 +2,6 @@ import styles from "./Card.module.css";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { useState, useEffect, } from "react";
-import {  deleteCharacter } from "../redux/actions";
 import { useDispatch } from "react-redux";
 import { getFavorites, removeFavorite} from "../redux/actions";
 import axios from "axios"
@@ -15,7 +14,6 @@ function Card({
   image,
   onClose,
   myFavorites,
-  deleteCharacter,
 })
 
 {

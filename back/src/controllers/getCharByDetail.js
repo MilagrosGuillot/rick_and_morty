@@ -1,10 +1,9 @@
 
 const axios = require("axios");
-const URL = "https://rickandmortyapi.com/api/character"
 const url = "https://be-a-rym.up.railway.app/api"
 const KEY = "cf893d2caad2.349d61a2b53d07cb1b33"
 
-const getCharByDetail = (res, req) => {
+const getCharByDetail = (req, res) => {
     const {id} = req.params;
     axios.get(`${url}/character/${id}?key=${KEY}`)
     .then((response) => {

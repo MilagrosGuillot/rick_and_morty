@@ -1,15 +1,23 @@
 import React from "react";
 import Card from "../Card/Card";
 import styles from "./Cards.module.css";
+import { useEffect } from "react";
+import { getFavorites } from "../redux/actions";
+import { useDispatch } from "react-redux";
 
-class Cards extends React.Component {
-  constructor(props){
-    super(props);
-  }
-  render(){
+export default function Cards({characters, onClose}){
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getFavorites()); //EN GOME/CARDS VAMOS A PEDIR FAVS
+  }, []);
+
+  
   return (
     <div className={styles.divCards}>
-      {this.props.characters.map(({ id, name, species, gender, image }) => (
+      {
+      characters.map(({ id, name, species, gender, image }) => (
         <Card
           id={id}
           key={id}
@@ -17,14 +25,11 @@ class Cards extends React.Component {
           species={species}
           gender={gender}
           image={image}
-          onClose={this.props.onClose}
+          onClose={onClose}
         />
-      ))}
-    
-    
+      ))
+      }
     </div>
   );
       }
-}
 
-export default Cards
