@@ -1,57 +1,72 @@
 import { useState } from "react";
-import validate from "./validation";
-import styles from "./Form.module.css"
+import { Link } from "react-router-dom";
+import styles from "./Form.module.css";
 
-const Form = ({login}) => {
+const Form = ({ login }) => {
   const [userData, setUserData] = useState({
-    username: "",
+    email: "",
     password: "",
   });
-  const [errors, setErrors] = useState({
-    username: "",
-    password: ""
-  });
 
-  const handleInputChange = (event) => {
-    const property = event.target.name;
-    const value = event.target.value;
+  const [errors, setErrors] = useState({});
 
-    setUserData({ ...userData, [property]: value });
-    validate({ ...userData, [property]: value } , errors, setErrors);
+  const handleChange = (event) => {
+    setUserData({
+      ...userData,
+      [event.target.name]: event.target.value,
+    });
   };
-  
-const handleSubmit = (event) => {
-    event.preventDefault()
-login(userData) //le paso el userdata verdadero
-}
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    login(userData);
+  };
 
   return (
-    <form onSubmit={handleSubmit} >
-      <div>
-        <label className={styles.label1} htmlFor="username">Username</label>
-        <input
-          type="text"
-          name="username"
-          value={userData.username}
-          onChange={handleInputChange}
-        ></input>
-        <span className={styles.errorUser}>{errors.username}</span>
-      </div>
+    <div className={styles.containerForm}>
+      <div className={styles.box}>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <h1 className={styles.title}>Sign in</h1>
+          <div className={styles.inputContainer}>
+          <span className={styles.span}>Email</span>
+            <input
+              type="email"
+              name="email"
+              required
+              value={userData.email}
+              onChange={handleChange}
+              className={styles.input}
+            />
+            
+            <i className={styles.i}></i>
+          </div>
+          
+          {errors.email && <p className={styles.danger}>{errors.email}</p>}
 
-      <div>
-        <label className={styles.label2} htmlFor="password">Password</label>
-        <input
-          type="text"
-          name="password"
-          value={userData.password}
-          onChange={handleInputChange}
-        ></input>
-        <span className={styles.errorPass}>{errors.password}</span>
-      </div>
+          <div className={styles.inputContainer}>
 
-      <button type="submit">Enviar</button>
-    </form>
+          <span className={styles.span}>Password</span>
+            <input
+              type="password"
+              name="password"
+              required
+              value={userData.password}
+              onChange={handleChange}
+              className={styles.input}
+            />
+            <i className={styles.i}></i>
+          </div>
+          
+          {errors.password && <p className={styles.danger}>{errors.password}</p>}
+
+          <div className={styles.links}>
+            <Link className={styles.link} to="/register">Sign up</Link>
+          </div>
+
+          <input type="submit" value="Login" className={styles.button} />
+        </form>
+      </div>
+    </div>
   );
 };
 

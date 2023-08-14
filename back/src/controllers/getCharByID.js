@@ -1,12 +1,11 @@
 
 const axios = require("axios");
-const url = "https://be-a-rym.up.railway.app/api"
-const KEY = "cf893d2caad2.349d61a2b53d07cb1b33"
+const url = "https://rickandmortyapi.com/api/character/"
 
 
 const getCharByID = (req, res) => {
     let { id } = req.params
-    axios.get(`${url}/character/${id}?key=${KEY}`)
+    axios.get(`${url}/${id}`)
         .then(response => {
             const { name, species, image, gender } = response.data
             res.status(200).json({ name, species, image, gender })

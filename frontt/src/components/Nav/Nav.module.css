@@ -1,0 +1,29 @@
+.navContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+  }
+  
+  .navLink {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: "Arial", sans-serif;
+    margin-right: 20px;
+    transition: color 0.3s ease;
+  }
+  
+  .navLink:hover {
+    color: #3498db;
+  }
+  
+  .navButton {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+  }

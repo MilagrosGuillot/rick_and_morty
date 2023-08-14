@@ -21,6 +21,30 @@ import axios from "axios"
           dispatch({ type: GET_CHARACTER_DETAIL, payload: response.data });
         };
       };
+
+      export const register = (email, password) => {
+        return async function (dispatch) {
+          try {
+            const response = await axios.post("http://localhost:3001/register", {
+              email: email,
+              password: password
+            });
+      
+            // Aquí puedes manejar la respuesta, por ejemplo, mostrar un mensaje de éxito
+            console.log(response.data);
+      
+            // Dispara una acción en Redux en caso de éxito, si es necesario
+            // dispatch(registrationSuccess(response.data));
+      
+            return response.data; // Esto es opcional, dependiendo de tus necesidades
+          } catch (error) {
+            console.error('Error en el registro:', error);
+            throw error; // Relanza el error para que pueda ser manejado más arriba
+          }
+        };
+      };
+      
+
       export const cleanDetail = () => {
         return { type: CLEAN_DETAIL };
       };

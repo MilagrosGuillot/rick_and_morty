@@ -3,4 +3,9 @@
     width: 100%;
     padding: 5px;
     margin: 10px;
+        display: flex;
+        flex-wrap: wrap; /* Permite que las cards se envuelvan a la siguiente fila si no caben en una sola línea */
+        gap: 20px; /* Espacio entre las cards */
+        justify-content: center; /* Centra las cards horizontalmente */
+    
 }

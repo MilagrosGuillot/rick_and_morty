@@ -1,6 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import styles from "./SearchBar.module.css"; 
 
-const SearchBar = ({onSearch}) => {
+const SearchBar = ({ onSearch }) => {
   const [id, setId] = useState("");
 
   const handleChange = (event) => {
@@ -8,12 +9,17 @@ const SearchBar = ({onSearch}) => {
   };
 
   return (
-    <>
-      <input type="search" onChange={handleChange} />       
-      <button onClick={() => onSearch(id)}>Buscar</button>
-    </>
-    //cada vez que escriba en el input se va a disparar el evento
-    //cuando le haga click se va a ejecutar la fn onsearch
+    <div className={styles.searchBarContainer}>
+      <input
+        type="search"
+        onChange={handleChange}
+        className={styles.searchInput}
+        placeholder="Enter character ID"
+      />
+      <button onClick={() => onSearch(id)} className={styles.searchButton}>
+        Search
+      </button>
+    </div>
   );
 };
 

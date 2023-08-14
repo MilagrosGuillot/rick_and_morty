@@ -1,12 +1,20 @@
 const { Router } = require("express")
 const getCharByDetail = require("../controllers/getCharByDetail");
 const getCharByID = require("../controllers/getCharByID")
+const login = require("../controllers/login")
+const postUser = require("../controllers/postUser")
 let favs = require("../utils/favs")
 
 const router = Router()
 //enrutado
 router.get("/onsearch/:id", getCharByID)
 router.get("/detail/:id", getCharByDetail) //manejamos la logica de la ruta poniendo las funciones
+
+
+
+router.get("/login", login);
+router.post("/register", postUser);
+
 
 router.post("/rickandmorty/fav", (req, res) => {
     favs.push(req.body);
