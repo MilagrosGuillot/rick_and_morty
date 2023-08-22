@@ -8,16 +8,16 @@ import axios from "axios"
 
     export const getFavorites = () => {
         return async function (dispatch) {
-          const URL_BASE = "http://localhost:3001";
-          const response = await axios.get(`${URL_BASE}/rickandmorty/fav`);
+          // const URL_BASE = "http://localhost:3001";
+          const response = await axios.get(`/rickandmorty/fav`);
           dispatch({ type: GET_FAVORITES, payload: response.data });
         };
       };
 
       export const getCharacterDetail = (id) => {
         return async function (dispatch) {
-          const URL_BASE = "http://localhost:3001";
-          const response = await axios.get(`${URL_BASE}/detail/${id}`);
+          // const URL_BASE = "http://localhost:3001";
+          const response = await axios.get(`/detail/${id}`);
           dispatch({ type: GET_CHARACTER_DETAIL, payload: response.data });
         };
       };
@@ -25,7 +25,7 @@ import axios from "axios"
       export const register = (email, password) => {
         return async function (dispatch) {
           try {
-            const response = await axios.post("http://localhost:3001/register", {
+            const response = await axios.post("/register", {
               email: email,
               password: password
             });

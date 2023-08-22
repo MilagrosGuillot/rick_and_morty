@@ -8,9 +8,9 @@ import About from "../src/components/About/About"
 import Detail from "../src/components/Detail/Detail"
 import Form from './components/Form/Form.jsx'
 import Favorites from "../src/components/Favorites/Favorites"
-import axios from "axios"
 import FormRegister from "./components/Form/FormRegister"
-
+import axios from 'axios';
+axios.defaults.baseURL = "http://localhost:3001" 
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -25,21 +25,25 @@ function App() {
     //   }
     // }, [navigate, access, pathname]);
     
-  function onSearch(id) {
-   if(characters.find((char) => char.id === id)) { 
-   return alert("Ya se mostro el personaje")
-   } 
-   
-    fetch(`http://localhost:3001/onsearch/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.name) { 
-          setCharacters((characters) => [...characters, data]);
-        } else {
-          window.alert('No hay personajes con ese ID');
-        }
-      });
-  };
+    function onSearch(id) {
+      if (characters.find((char) => char.id === id)) {
+        return alert("Ya se mostró el personaje");
+      }
+    
+      axios.get(`/onsearch/${id}`)
+        .then((response) => {
+          const data = response.data;
+          if (data.name) {
+            setCharacters((characters) => [...characters, data]);
+          } else {
+            window.alert('No hay personajes con ese ID');
+          }
+        })
+        .catch((error) => {
+          console.error('Error al hacer la solicitud:', error);
+        });
+    }
+    
   //ponele que tocamos en la x de la tarj con id 1, todo lo que no sea 1 filtra, menos el 1
   const onClose = (id) => {
     setCharacters(
@@ -49,7 +53,7 @@ function App() {
   const login = async (userData) => {
     try {
       const { email, password } = userData;
-      const URL = "http://localhost:3001/login";
+      const URL = "/login";
       const { data } = await axios(
         URL + `?email=${email}&password=${password}`
       );

@@ -19,13 +19,13 @@ function Card({
 {
   const addFavorite = (character) => {
     axios
-      .post("http://localhost:3001/rickandmorty/fav", character) //hago una req post al server mandando a guardar el obj character que le puse el corazon
+      .post("/rickandmorty/fav", character) //hago una req post al server mandando a guardar el obj character que le puse el corazon
       .then((res) => console.log("ok"));
   }
   const dispatch = useDispatch()
 
   const removeFavorite = async (id) => {
-    await axios.delete(`http://localhost:3001/rickandmorty/fav/${id}`);
+    await axios.delete(`/rickandmorty/fav/${id}`);
     dispatch(getFavorites());
     alert("Eliminado con éxito");
   };
