@@ -10,7 +10,7 @@ import Form from './components/Form/Form.jsx'
 import Favorites from "../src/components/Favorites/Favorites"
 import FormRegister from "./components/Form/FormRegister"
 import axios from 'axios';
-axios.defaults.baseURL = "https://rickandmorty-b97y.onrender.com" 
+axios.defaults.baseURL = "https://rickandmorty-q49f.onrender.com" 
 
 function App() {
   const [characters, setCharacters] = useState([]);
