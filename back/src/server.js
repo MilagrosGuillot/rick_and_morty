@@ -3,12 +3,14 @@ const router = require("./routes")
 const morgan = require("morgan")
 const cors = require("cors");
 
+
 const server = express();
 server.use(express.json())
 server.use(morgan("dev"))
 server.use(cors());
 server.use("/", router)
-require("dotenv").config()
+
+
 
 server.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'https://rick-and-morty-livid-gamma.vercel.app'); // 
@@ -17,7 +19,6 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
-
 
 
 server.listen(process.env.PORT, () => {

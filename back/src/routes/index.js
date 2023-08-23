@@ -3,6 +3,7 @@ const getCharByDetail = require("../controllers/getCharByDetail");
 const getCharByID = require("../controllers/getCharByID")
 const login = require("../controllers/login")
 const postUser = require("../controllers/postUser")
+const pool = require("../server")
 let favs = require("../utils/favs")
 
 const router = Router()
