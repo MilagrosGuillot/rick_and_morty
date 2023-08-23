@@ -10,15 +10,18 @@ const UserModel = require("./controllers/models/User");
 // URL ----> postgres://DB_USER:DB_PASSWORD@DB_HOST/rickandmorty
 const sequelize = new Sequelize(
    // (`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`),
-   DATABASE_URL,
-   { logging: false, native: false,
-   dialecOptions:{
-      ssl:{
-         require: true,
+      DATABASE_URL,
+      {
+         logging: false,
+         native: false,
+         dialectOptions: {
+            ssl: {
+               require: true,
+            }
+         }
       }
-   }
-   }
-)
+   );
+   
 
 // EJERCICIO 05
 // Debajo de este comentario puedes ejecutar la función de los modelos.
