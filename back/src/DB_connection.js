@@ -21,7 +21,9 @@ const sequelize = new Sequelize(
          }
       }
    );
-   
+   //? aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+   //!No
+   //TODO: DAKSDAGFGFDHFHG
 
 // EJERCICIO 05
 // Debajo de este comentario puedes ejecutar la función de los modelos.
