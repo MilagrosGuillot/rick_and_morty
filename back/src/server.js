@@ -2,7 +2,7 @@ const express = require("express");
 const router = require("./routes")
 const morgan = require("morgan")
 const cors = require("cors");
-
+const { conn } = require('./DB_connection');
 const server = express();
 
 server.use(express.json());
@@ -19,6 +19,8 @@ server.use((req, res, next) => {
 
 server.use("/", router);
 
-server.listen(process.env.PORT, () => {
-  console.log(`Listening on port ${process.env.PORT}`);
+conn.sync({ force: true }).then(() => {
+  server.listen(process.env.PORT, () => {
+    console.log(`%s listening at`, process.env.PORT); // eslint-disable-line no-console
+  });
 });
